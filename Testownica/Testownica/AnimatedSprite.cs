@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Testownica
+namespace Amazing_Tower
 {
-    abstract class AnimatedSprite
+    abstract class AnimatedSprite : GameObject
     {
         protected Texture2D spriteTexture;
         protected Vector2 spritePosition;
@@ -22,6 +22,9 @@ namespace Testownica
         protected Vector2 spriteDirection = Vector2.Zero;
 
         private string currentAnimation; //holding current animation to compare with dictionarny
+
+        public enum myDirection { none, left, right, up, down };
+        protected myDirection currentDir = myDirection.none;
 
         public int FPS               //FramesPerSecond - szybkość animacji
         {
@@ -74,6 +77,7 @@ namespace Testownica
                 }
                 else
                 {
+                    AnimationDone(currentAnimation);
                     frameIndex = 0;
                 }
             }
@@ -94,5 +98,6 @@ namespace Testownica
             }
         }
 
+        public abstract void AnimationDone(string animation);
     }
 }
